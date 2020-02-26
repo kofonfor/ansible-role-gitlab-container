@@ -1,0 +1,23 @@
+- name: create ext volume for data
+  file: state=directory path={{ ext_gitlab_data_volume }}
+
+- name: create ext volume for logs
+  file: state=directory path={{ ext_gitlab_logs_volume }}
+
+- name: create ext volume for config files
+  file: state=directory path={{ ext_gitlab_config_volume }}
+
+- name: start a Gitlab container
+  docker_container:
+    name: gitlab
+    image: gitlab/gitlab-ce
+    state: started
+    restart_policy: always
+    exposed_ports:
+      - 80
+    ports:
+      - "{{ gitlab_container_host_address }}:{{ gitlab_container_port }}:80"
+    volumes:
+      - "{{ ext_gitlab_config_volume }}:/etc/gitlab"
+      - "{{ ext_gitlab_logs_volume }}:/var/log/gitlab"
+      - "{{ ext_gitlab_data_volume }}:/var/opt/gitlab"

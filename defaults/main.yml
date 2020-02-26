@@ -1,0 +1,5 @@
+ext_gitlab_data_volume: /var/lib/docker-extvols/gitlab/data
+ext_gitlab_logs_volume: /var/lib/docker-extvols/gitlab/logs
+ext_gitlab_config_volume: /var/lib/docker-extvols/gitlab/config
+gitlab_container_host_address: 0.0.0.0
+gitlab_container_port: 8081
