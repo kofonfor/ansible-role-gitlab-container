@@ -16,7 +16,7 @@
     exposed_ports:
       - 80
     ports:
-      - "{{ gitlab_container_host_address }}:{{ gitlab_container_port }}:80"
+      - "{{ gitlab_container_host_address }}:{{ gitlab_container_port }}:{{ gitlab_container_int_port }}"
       - "{{ gitlab_container_host_ssh_address }}:{{ gitlab_container_ssh_port }}:22"
     volumes:
       - "{{ ext_gitlab_config_volume }}:/etc/gitlab"
